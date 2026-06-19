@@ -7,6 +7,7 @@ from google.genai import types
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
+
 _genai_client = genai.Client(api_key=GEMINI_API_KEY)
 
 
@@ -15,9 +16,9 @@ class GeminiEmbeddingFunction(EmbeddingFunction):
 
     def __call__(self, input: Documents) -> Embeddings:
         result = _genai_client.models.embed_content(
-            model="text-embedding-004",
+            model="gemini-embedding-001",
             contents=input,
-            config=types.EmbedContentConfig(output_dimensionality=768),
+            #config=types.EmbedContentConfig(output_dimensionality=768),
         )
         return [e.values for e in result.embeddings]
 

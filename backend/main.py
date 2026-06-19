@@ -15,6 +15,11 @@ import gemini_client
 
 # --- App setup ---
 app = FastAPI(title="Intelligent Knowledge Base API")
+@app.on_event("startup")
+def startup():
+    print("ROUTES LOADED:")
+    for r in app.routes:
+        print(r.path)
 
 app.add_middleware(
     CORSMiddleware,
